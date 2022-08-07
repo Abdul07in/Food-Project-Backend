@@ -1,4 +1,5 @@
-a = 10
-b = 20
-c = a + b
-print(c)
+import time
+
+while True:
+    time.sleep(10)
+    print("*")
