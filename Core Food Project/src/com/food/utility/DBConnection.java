@@ -8,7 +8,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://dbpanel.squadinfotech.in:3306/testuser_abdul?user=testuser&password=testuser");
+                    "jdbc:mysql://dbpanel.squadinfotech.in:3306/testuser_MajeedProject41?user=testuser&password=testuser");
             if (connection != null) {
                 return connection;
             }
