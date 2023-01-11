@@ -39,34 +39,54 @@ public class CustomerTest {
 
 			switch (choice) {
 
-			case 1:
-				System.out.println("ADD CUSTOMER");
+				case 1:
+					System.out.println("ADD CUSTOMER");
 
-				System.out.print("Enter Customer Name : ");
-				customerName = sc.nextLine();
+					sc.nextLine();
+					System.out.print("Enter Customer Name : ");
+					customerName = sc.nextLine();
 
-				System.out.print("Enter Customer Address : ");
-				System.out.print("Enter Customer Email : ");
-				System.out.print("Enter Customer Phone : ");
-				System.out.print("Enter Customer Password : ");
+					System.out.print("Enter Customer Address : ");
+					customerAddress = sc.nextLine();
 
-				break;
+					System.out.print("Enter Customer Email : ");
+					customerEmail = sc.nextLine();
 
-			case 2:
+					System.out.print("Enter Customer Phone : ");
+					customerPhone = sc.nextLong();
 
-				break;
+					System.out.print("Enter Customer Password : ");
+					customerPassword = sc.nextLine();
 
-			case 3:
-				break;
+					System.out
+							.println(customerName + customerEmail + customerPassword + customerAddress + customerPhone);
 
-			case 4:
-				break;
-			case 5:
-				System.exit(0);
-				break;
-			default:
-				System.out.println("Invalid Option.");
-				break;
+					break;
+
+				case 2:
+
+					break;
+
+				case 3:
+					break;
+
+				case 4:
+					System.out.println("Show All Customers.");
+					clist = cimpl.showAllCustomer();
+
+					if (clist != null)
+						clist.forEach(s -> System.out
+								.println("---------------------------------------------------------\n" + s));
+					else
+						System.out.println("DataBase is Empty");
+
+					break;
+				case 5:
+					System.exit(0);
+					break;
+				default:
+					System.out.println("Invalid Option.");
+					break;
 			}
 		}
 

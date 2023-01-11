@@ -18,8 +18,12 @@ public interface CustomerDao {
 
 	public Customer searchCustomerByEmail(String customerEmail);
 
-	public List<Customer> searchAllCustomer();
+	public List<Customer> showAllCustomer();
 
-	public boolean checkUnique(String chkItem, String value);
+	public boolean checkEmail(String customerEmail);
+
+	public boolean checkPassword(String customerPassword);
+
+	public boolean checkPhone(Long customerPhone);
 
 }
