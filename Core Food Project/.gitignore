@@ -1,3 +1,5 @@
 /Backup
 /CoreFoodProject.zip
 /out
+/bin
+*.class
