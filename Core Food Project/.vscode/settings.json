@@ -1,8 +1,25 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
     ],
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "dbpanel.squadinfotech.in",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Dbpanel",
+            "database": "testuser_MajeedProject41",
+            "username": "testuser",
+            "password": "testuser"
+        }
+    ]
 }
