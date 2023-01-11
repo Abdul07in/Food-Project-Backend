@@ -23,12 +23,12 @@ public class CustomerTest {
 		Integer customerId;
 		String customerName;
 		String customerAddress;
-		String customerEmail;
-		Long customerPhone;
-		String customerPassword;
-		boolean flag = false;
+		String customerEmail = "";
+		Long customerPhone = 1L;
+		String customerPassword = "";
 
 		while (true) {
+			boolean flag = true;
 			System.out.println("1. Add Customer");
 			System.out.println("2. Update Customer");
 			System.out.println("3. Delete Customer");
@@ -46,21 +46,51 @@ public class CustomerTest {
 					System.out.print("Enter Customer Name : ");
 					customerName = sc.nextLine();
 
-					System.out.print("Enter Customer Email : ");
-					customerEmail = sc.nextLine();
+					while (flag) {
+						System.out.print("Enter Customer Email : ");
+						customerEmail = sc.nextLine();
+						flag = cimpl.checkEmail(customerEmail);
+						if (flag) {
+							System.out.println("Email already exist , please enter a new Email-id");
+						} else
+							break;
 
-					System.out.print("Enter Customer Password : ");
-					customerPassword = sc.nextLine();
+					}
 
+					flag = true;
+					while (flag) {
+						System.out.print("Enter Customer Password : ");
+						customerPassword = sc.nextLine();
+						flag = cimpl.checkPassword(customerPassword);
+						if (flag) {
+							System.out.println("Password already exist , please enter a new Password.");
+						} else
+							break;
+					}
+
+					flag = true;
+					while (flag) {
+						System.out.print("Enter Customer Phone : ");
+						customerPhone = sc.nextLong();
+						if (customerPhone != 0L)
+							flag = cimpl.checkPhone(customerPhone);
+						if (flag) {
+							System.out.println("PhoneNumber already exist , please enter a new PhoneNumber.");
+						} else
+							break;
+					}
+					sc.nextLine();
 					System.out.print("Enter Customer Address : ");
 					customerAddress = sc.nextLine();
 
-					System.out.print("Enter Customer Phone : ");
-					customerPhone = sc.nextLong();
-					sc.nextLine();
+					if (customerEmail != "" && customerPassword != "" && customerPhone != 1L)
+						c = new Customer(customerName, customerAddress, customerEmail, customerPhone, customerPassword);
+					else {
+						System.out.println("Error : Feilds are Empty");
+						break;
+					}
 
-					c = new Customer(customerName, customerAddress, customerEmail, customerPhone, customerPassword);
-					if (cimpl.addCustomer(c))
+					if (c != null && cimpl.addCustomer(c))
 						System.out.println("\nCustomer Added Successful\n");
 					else
 						System.out.println("Error While Adding");
