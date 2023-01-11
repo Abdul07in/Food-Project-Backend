@@ -5,14 +5,23 @@ import java.util.List;
 import com.food.pojo.Food;
 
 public interface FoodDao {
-    
-    public List<Food> showAll();
-    public boolean updateItem(Food food);
-    public boolean insertItem(Food food);
-    public boolean deleteItem(Food food);
 
-    public Food searchById(Integer foodId);
-    public Food searchByName(String foodName);
-    public List<Food> searchByType(Integer foodId);
-    
+	public boolean addFood(Food f);
+
+	public boolean updateFood(Food f);
+
+	public boolean deleteFood(Integer foodId);
+
+	public List<Food> searchFoodByCategory(String foodCategory);
+
+	public List<Food> searchFoodByName(String foodName);
+
+	public List<Food> searchFoodByType(String foodType);
+
+	public Food searchFoodById(Integer foodId);
+
+	public List<Food> fetchAllFood();
+
+	public void updateFoodMenu();
+
 }

@@ -4,19 +4,23 @@ import java.sql.*;
 
 public class DBConnection {
 
-    public static Connection makConnection() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://dbpanel.squadinfotech.in:3306/testuser_MajeedProject41?user=testuser&password=testuser");
-            if (connection != null) {
-                return connection;
-            }
+	public static Connection makeConnection() {
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+		Connection con = null;
 
-        return null;
-    }
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://148.72.215.41/testuser_MajeedProject41?user=testuser&password=testuser");
+
+			if (con != null)
+				return con;
+
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }
