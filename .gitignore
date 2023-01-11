@@ -1,0 +1,10 @@
+/Backup
+/CoreFoodProject.zip
+/out
+.gitignore
+/.idea/.gitignore
+/FoodProject.iml
+/.idea/libraries/mysql_connector_j_8_0_31.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
