@@ -12,7 +12,7 @@ public interface CustomerDao {
 
 	public boolean deleteCustomer(Customer c);
 
-	public Customer searchCustomerById(Integer custoomerId);
+	public Customer searchCustomerById(Integer customerId);
 
 	public List<Customer> searchCustomerByName(String customerName);
 
@@ -25,5 +25,7 @@ public interface CustomerDao {
 	public boolean checkPassword(String customerPassword);
 
 	public boolean checkPhone(Long customerPhone);
+
+	
 
 }

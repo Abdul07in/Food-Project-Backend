@@ -46,28 +46,68 @@ public class CustomerTest {
 					System.out.print("Enter Customer Name : ");
 					customerName = sc.nextLine();
 
-					System.out.print("Enter Customer Address : ");
-					customerAddress = sc.nextLine();
-
 					System.out.print("Enter Customer Email : ");
 					customerEmail = sc.nextLine();
-
-					System.out.print("Enter Customer Phone : ");
-					customerPhone = sc.nextLong();
 
 					System.out.print("Enter Customer Password : ");
 					customerPassword = sc.nextLine();
 
-					System.out
-							.println(customerName + customerEmail + customerPassword + customerAddress + customerPhone);
+					System.out.print("Enter Customer Address : ");
+					customerAddress = sc.nextLine();
+
+					System.out.print("Enter Customer Phone : ");
+					customerPhone = sc.nextLong();
+					sc.nextLine();
+
+					c = new Customer(customerName, customerAddress, customerEmail, customerPhone, customerPassword);
+					if (cimpl.addCustomer(c))
+						System.out.println("\nCustomer Added Successful\n");
+					else
+						System.out.println("Error While Adding");
 
 					break;
 
 				case 2:
+					System.out.println("UPDATE CUSTOMER");
+					System.out.print("\nEnter Customer Id : ");
+					customerId = sc.nextInt();
+
+					c = cimpl.searchCustomerById(customerId);
+
+					if (c.getCustomerId() != null) {
+						System.out.println(c + "---------------------------------------\n");
+						sc.nextLine();
+						System.out.println("🟠 Do you want to Update ? [YES/NO]");
+						System.out.print("=>\t");
+						String choice2 = sc.nextLine();
+						if (choice2.equalsIgnoreCase("yes")) {
+
+						}
+					} else
+						System.out.println("\nCustomer Not Found , please enter a valid Customer Id.");
 
 					break;
 
 				case 3:
+
+					System.out.println("DELETE CUSTOMER");
+					System.out.print("\nEnter Customer Id : ");
+					customerId = sc.nextInt();
+
+					c = cimpl.searchCustomerById(customerId);
+
+					if (c.getCustomerId() != null) {
+						System.out.println(c + "---------------------------------------\n");
+						sc.nextLine();
+						System.out.println("🟠 Do you want to Delete ? [YES/NO]");
+						System.out.print("=>\t");
+						String choice2 = sc.nextLine();
+						if (choice2.equalsIgnoreCase("yes")) {
+
+						}
+					} else
+						System.out.println("\nCustomer Not Found , please enter a valid Customer Id.");
+
 					break;
 
 				case 4:
@@ -76,7 +116,7 @@ public class CustomerTest {
 
 					if (clist != null)
 						clist.forEach(s -> System.out
-								.println("---------------------------------------------------------\n" + s));
+								.println(s + "\n------------------------------------------------------------\n"));
 					else
 						System.out.println("DataBase is Empty");
 

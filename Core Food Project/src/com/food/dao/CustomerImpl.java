@@ -17,12 +17,30 @@ public class CustomerImpl implements CustomerDao {
 	String sql = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
-	Customer customer = new Customer();
+	Customer customer = null;
 	List<Customer> clist = null;
 
 	@Override
 	public boolean addCustomer(Customer c) {
-		// TODO Auto-generated method stub
+
+		try {
+			con = DBConnection.makeConnection();
+			sql = "INSERT INTO `Customer_Maj`(`customerName`, `customerAddress`, `customerEmail`, `customerPhone`, `customerPassword`) VALUES (?,?,?,?,?)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, c.getCustomerName());
+			pst.setString(2, c.getCustomerAddress());
+			pst.setString(3, c.getCustomerEmail());
+			pst.setLong(4, c.getCustomerPhone());
+			pst.setString(5, c.getCustomerPassword());
+
+			int i = pst.executeUpdate();
+
+			if (i > 0)
+				return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -39,8 +57,26 @@ public class CustomerImpl implements CustomerDao {
 	}
 
 	@Override
-	public Customer searchCustomerById(Integer custoomerId) {
-		// TODO Auto-generated method stub
+	public Customer searchCustomerById(Integer customerId) {
+		try {
+			con = DBConnection.makeConnection();
+			sql = "SELECT * FROM `Customer_Maj` where customerId = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, customerId);
+			rs = pst.executeQuery();
+			customer = new Customer();
+			while (rs != null & rs.next()) {
+				customer.setCustomerId(customerId);
+				customer.setCustomerName(rs.getString("customerName"));
+				customer.setCustomerEmail(rs.getString("customerEmail"));
+				customer.setCustomerPassword(rs.getString("customerPassword"));
+				customer.setCustomerAddress(rs.getString("customerAddress"));
+				customer.setCustomerPhone(rs.getLong("customerPhone"));
+			}
+			return customer;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -79,7 +115,7 @@ public class CustomerImpl implements CustomerDao {
 
 	@Override
 	public boolean checkEmail(String customerEmail) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

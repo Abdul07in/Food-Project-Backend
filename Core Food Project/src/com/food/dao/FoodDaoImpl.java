@@ -14,7 +14,7 @@ public class FoodDaoImpl implements FoodDao {
 	String sql = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
-	Food f = new Food();
+	Food f = null;
 	List<Food> flist = null;
 
 	Integer foodId;
@@ -201,91 +201,91 @@ public class FoodDaoImpl implements FoodDao {
 
 		sc.nextLine();
 		switch (option) {
-		case 1:
-			System.out.println("1. Update Food Name.");
-			System.out.print("Enter Food Name : ");
-			foodName = sc.nextLine();
-			f.setFoodName(foodName);
+			case 1:
+				System.out.println("1. Update Food Name.");
+				System.out.print("Enter Food Name : ");
+				foodName = sc.nextLine();
+				f.setFoodName(foodName);
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
 
-			break;
-		case 2:
-			System.out.println("2. Update Food Type.");
-			System.out.print("Enter Food Type : ");
-			foodType = sc.nextLine();
-			f.setFoodType(foodType);
+				break;
+			case 2:
+				System.out.println("2. Update Food Type.");
+				System.out.print("Enter Food Type : ");
+				foodType = sc.nextLine();
+				f.setFoodType(foodType);
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
-			break;
-		case 3:
-			System.out.println("3. Update Food Price.");
-			System.out.print("Enter Food Price : ");
-			foodPrice = sc.nextDouble();
-			f.setFoodPrice(foodPrice);
-			;
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
+				break;
+			case 3:
+				System.out.println("3. Update Food Price.");
+				System.out.print("Enter Food Price : ");
+				foodPrice = sc.nextDouble();
+				f.setFoodPrice(foodPrice);
+				;
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
-			break;
-		case 4:
-			System.out.println("4. Update Food Quantity.");
-			System.out.print("Enter Food Quantity : ");
-			foodQuantity = sc.nextInt();
-			f.setFoodQuantity(foodQuantity);
-			;
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
+				break;
+			case 4:
+				System.out.println("4. Update Food Quantity.");
+				System.out.print("Enter Food Quantity : ");
+				foodQuantity = sc.nextInt();
+				f.setFoodQuantity(foodQuantity);
+				;
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
-			break;
-		case 5:
-			System.out.println("5. Update Food Category.");
-			System.out.print("Enter Food Category : ");
-			foodCategory = sc.nextLine();
-			f.setFoodCategory(foodCategory);
-			;
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
+				break;
+			case 5:
+				System.out.println("5. Update Food Category.");
+				System.out.print("Enter Food Category : ");
+				foodCategory = sc.nextLine();
+				f.setFoodCategory(foodCategory);
+				;
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
-			break;
-		case 6:
-			System.out.println("6. Update Food Description.");
-			System.out.print("Enter Food Description : ");
-			foodDescription = sc.nextLine();
-			f.setFoodDescription(foodDescription);
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
+				break;
+			case 6:
+				System.out.println("6. Update Food Description.");
+				System.out.print("Enter Food Description : ");
+				foodDescription = sc.nextLine();
+				f.setFoodDescription(foodDescription);
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
-			break;
-		case 7:
-			System.out.println("7. Update Food Rating.");
-			System.out.print("Enter Food Rating : ");
-			foodRating = sc.nextInt();
-			f.setFoodRating(foodRating);
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
+				break;
+			case 7:
+				System.out.println("7. Update Food Rating.");
+				System.out.print("Enter Food Rating : ");
+				foodRating = sc.nextInt();
+				f.setFoodRating(foodRating);
 
-			if (updateFood(f))
-				System.out.println("SucessFully Updated");
-			else
-				System.out.println("Error");
-			break;
+				if (updateFood(f))
+					System.out.println("SucessFully Updated");
+				else
+					System.out.println("Error");
+				break;
 
-		default:
-			System.out.println("Invalid Option.");
-			break;
+			default:
+				System.out.println("Invalid Option.");
+				break;
 		}
 
 	}
