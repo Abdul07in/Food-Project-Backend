@@ -129,7 +129,7 @@ public class CustomerTest {
                             if (choice2.equalsIgnoreCase("yes")) {
 
                             }
-                        } else System.out.println("\nCustomer Not Found , please enter a valid Customer Id.");
+                        } else System.out.println("\nCustomer Not Found ,please enter a valid Customer Id.");
 
                         break;
 
