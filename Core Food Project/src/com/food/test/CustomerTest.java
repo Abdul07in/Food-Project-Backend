@@ -52,8 +52,7 @@ public class CustomerTest {
                             customerEmail = sc.nextLine();
                             flag = cimpl.checkEmail(customerEmail);
                             if (flag) {
-                                System.out.println("Email already exist , please enter a new Email-id");
-                            } else
+                                System.out.println("Email already exist , please enter a new Email-id");       } else
                                 break;
 
                         }
@@ -88,7 +87,7 @@ public class CustomerTest {
                             c = new Customer(customerName, customerAddress, customerEmail, customerPhone,
                                     customerPassword);
                         else {
-                            System.out.println("Error : Feilds are Empty");
+                            System.out.println("Error : Fields are Empty");
                             break;
                         }
 
@@ -166,7 +165,7 @@ public class CustomerTest {
                                         while (cimpl.checkPassword(customerPassword)) {
                                             System.out.println("Password already exist , please enter a new Password");
                                             System.out.print("Enter New Password : ");
-                                            customerEmail = sc.nextLine();
+                                            customerPassword = sc.nextLine();
                                             flag = cimpl.checkPassword(customerPassword);
                                             if (!flag)
                                                 break;
@@ -186,7 +185,7 @@ public class CustomerTest {
                                             System.out.println(
                                                     "Phone Number already exist , please enter a new Phone Number");
                                             System.out.print("Enter New Phone Number : ");
-                                            customerEmail = sc.nextLine();
+                                            customerPhone = sc.nextLong();
                                             flag = cimpl.checkPhone(customerPhone);
                                             if (!flag)
                                                 break;
@@ -194,13 +193,13 @@ public class CustomerTest {
                                         }
                                         c.setCustomerPhone(customerPhone);
                                         if (cimpl.updateCustomer(c))
-                                            System.out.println("Phone Updated Successfully");
+                                            System.out.println("Phone Number Updated Successfully");
                                         else
-                                            System.out.println("Error While Updating Phone.");
+                                            System.out.println("Error While Updating Phone Number.");
                                         break;
                                     case 5:
                                         sc.nextLine();
-                                        System.out.print("\nEnter new address : ");
+                                        System.out.print("\nEnter New Address : ");
                                         customerAddress = sc.nextLine();
                                         c.setCustomerAddress(customerAddress);
                                         if (cimpl.updateCustomer(c))
@@ -235,9 +234,9 @@ public class CustomerTest {
                             String choice2 = sc.nextLine();
                             if (choice2.equalsIgnoreCase("yes")) {
                                 if (cimpl.deleteCustomer(c))
-                                    System.out.println("Customer Deleted Sucessfully");
+                                    System.out.println("Customer Deleted Successfully");
                                 else
-                                    System.out.println("Error while deleteing");
+                                    System.out.println("Error while deleting");
                             }
                         } else
                             System.out.println("\nCustomer Not Found ,please enter a valid Customer Id.");

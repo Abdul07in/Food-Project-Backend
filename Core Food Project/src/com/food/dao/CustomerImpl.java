@@ -99,7 +99,7 @@ public class CustomerImpl implements CustomerDao {
       rs = pst.executeQuery();
       customer = new Customer();
       while (rs != null & rs.next()) {
-        customer.setCustomerId(customerId);
+        customer.setCustomerId(rs.getInt("customerId"));
         customer.setCustomerName(rs.getString("customerName"));
         customer.setCustomerEmail(rs.getString("customerEmail"));
         customer.setCustomerPassword(rs.getString("customerPassword"));
