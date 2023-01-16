@@ -21,5 +21,6 @@
       "username": "testuser",
       "password": "testuser"
     }
-  ]
+  ],
+  "editor.formatOnSave": true
 }

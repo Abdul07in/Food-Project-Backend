@@ -136,8 +136,17 @@ public class CustomerTest {
                                         break;
                                     case 2:
                                         sc.nextLine();
-                                        System.out.print("\nEnter new email : ");
+                                        System.out.print("\nEnter New Email : ");
                                         customerEmail = sc.nextLine();
+                                        while (cimpl.checkEmail(customerEmail)) {
+                                            System.out.println("Email already exist , please enter a new Email-id");
+                                            System.out.print("Enter New Email : ");
+                                            customerEmail = sc.nextLine();
+                                            flag = cimpl.checkEmail(customerEmail);
+                                            if (!flag)
+                                                break;
+
+                                        }
                                         c.setCustomerEmail(customerEmail);
                                         if (cimpl.updateCustomer(c))
                                             System.out.println("Email Updated Successfully");
@@ -152,8 +161,17 @@ public class CustomerTest {
                                             System.out.println("Old password Incorrect.");
                                             break;
                                         }
-                                        System.out.print("\nEnter new password : ");
+                                        System.out.print("\nEnter New Password : ");
                                         customerPassword = sc.nextLine();
+                                        while (cimpl.checkPassword(customerPassword)) {
+                                            System.out.println("Password already exist , please enter a new Password");
+                                            System.out.print("Enter New Password : ");
+                                            customerEmail = sc.nextLine();
+                                            flag = cimpl.checkPassword(customerPassword);
+                                            if (!flag)
+                                                break;
+
+                                        }
                                         c.setCustomerPassword(customerPassword);
                                         if (cimpl.updateCustomer(c))
                                             System.out.println("Password Updated Successfully");
@@ -162,8 +180,18 @@ public class CustomerTest {
                                         break;
                                     case 4:
                                         sc.nextLine();
-                                        System.out.print("\nEnter new phone : ");
+                                        System.out.print("\nEnter New Phone Number : ");
                                         customerPhone = sc.nextLong();
+                                        while (cimpl.checkPhone(customerPhone)) {
+                                            System.out.println(
+                                                    "Phone Number already exist , please enter a new Phone Number");
+                                            System.out.print("Enter New Phone Number : ");
+                                            customerEmail = sc.nextLine();
+                                            flag = cimpl.checkPhone(customerPhone);
+                                            if (!flag)
+                                                break;
+
+                                        }
                                         c.setCustomerPhone(customerPhone);
                                         if (cimpl.updateCustomer(c))
                                             System.out.println("Phone Updated Successfully");
@@ -240,6 +268,12 @@ public class CustomerTest {
                                     .println(s + "\n------------------------------------------------------------\n"));
                         else
                             System.out.println("DataBase is Empty");
+
+                        break;
+
+                    case 6:
+                        System.out.println("Search By Email");
+                        customerEmail = sc.nextLine();
 
                         break;
                     case 9:
