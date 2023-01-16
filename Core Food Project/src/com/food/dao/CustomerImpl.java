@@ -36,7 +36,8 @@ public class CustomerImpl implements CustomerDao {
 
             int i = pst.executeUpdate();
 
-            if (i > 0) return true;
+            if (i > 0)
+                return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,13 +54,43 @@ public class CustomerImpl implements CustomerDao {
 
     @Override
     public boolean updateCustomer(Customer c) {
-        // TODO Auto-generated method stub
+        con = DBConnection.makeConnection();
+        sql = "UPDATE `Customer_Maj` SET  `customerName`=?,`customerAddress`=?,`customerEmail`=?,`customerPhone`=?,`customerPassword`=? WHERE customerId = ?";
+
+        try {
+            pst = con.prepareStatement(sql);
+
+            pst.setString(1, c.getCustomerName());
+            pst.setString(2, c.getCustomerAddress());
+            pst.setString(3, c.getCustomerEmail());
+            pst.setLong(4, c.getCustomerPhone());
+            pst.setString(5, c.getCustomerPassword());
+            pst.setInt(6, c.getCustomerId());
+
+            if (pst.executeUpdate() > 0)
+                return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
     @Override
     public boolean deleteCustomer(Customer c) {
-        // TODO Auto-generated method stub
+
+        con = DBConnection.makeConnection();
+        sql = "DELETE * FROM `Customer_Maj` WHERE customerId = ? ";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, c.getCustomerId());
+            if (pst.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -103,7 +134,8 @@ public class CustomerImpl implements CustomerDao {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs != null && rs.next()) {
-                customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6));
+                customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5),
+                        rs.getString(6));
                 clist.add(customer);
             }
             return clist;
@@ -135,7 +167,8 @@ public class CustomerImpl implements CustomerDao {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs != null && rs.next()) {
-                customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6));
+                customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5),
+                        rs.getString(6));
                 clist.add(customer);
             }
             return clist;
@@ -162,7 +195,8 @@ public class CustomerImpl implements CustomerDao {
             pst = con.prepareStatement(sql);
             pst.setString(1, customerEmail);
             rs = pst.executeQuery();
-            while (rs.next()) return true;
+            while (rs.next())
+                return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -185,7 +219,8 @@ public class CustomerImpl implements CustomerDao {
             pst = con.prepareStatement(sql);
             pst.setString(1, customerPassword);
             rs = pst.executeQuery();
-            while (rs.next()) return true;
+            while (rs.next())
+                return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -207,7 +242,8 @@ public class CustomerImpl implements CustomerDao {
             pst = con.prepareStatement(sql);
             pst.setLong(1, customerPhone);
             rs = pst.executeQuery();
-            while (rs.next()) return true;
+            while (rs.next())
+                return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

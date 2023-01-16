@@ -38,7 +38,7 @@ public class FoodTest {
 
                 System.out.println("1. Add new food item.");
                 System.out.println("2. Show food item.");
-                System.out.println("3. Search Food By Id.");
+                System.out.println("3. Update Food By Id.");
                 System.out.println("4. Delete Food by Id.");
                 System.out.println("9. Exit");
 
