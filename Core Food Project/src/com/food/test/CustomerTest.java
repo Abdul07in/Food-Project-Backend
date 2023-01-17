@@ -10,8 +10,8 @@ public class CustomerTest {
 
     static {
         System.out.println("------FOOD SHOP--------------------------");
-        System.out.println("--------------CUSTOMER LOGIN-------------");
-        System.out.println("-----------------------------------------");
+        System.out.println("--------------CUSTOMER ------------------");
+        System.out.println("----------------------MANAGEMENT---------");
     }
 
     public static void main(String[] args) {

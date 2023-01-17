@@ -24,8 +24,7 @@ public class CustomerImpl implements CustomerDao {
   public boolean addCustomer(Customer c) {
     try {
       con = DBConnection.makeConnection();
-      sql =
-        "INSERT INTO `Customer_Maj`(`customerName`, `customerAddress`, `customerEmail`, `customerPhone`, `customerPassword`) VALUES (?,?,?,?,?)";
+      sql = "INSERT INTO `Customer_Maj`(`customerName`, `customerAddress`, `customerEmail`, `customerPhone`, `customerPassword`) VALUES (?,?,?,?,?)";
       pst = con.prepareStatement(sql);
       pst.setString(1, c.getCustomerName());
       pst.setString(2, c.getCustomerAddress());
@@ -35,7 +34,8 @@ public class CustomerImpl implements CustomerDao {
 
       int i = pst.executeUpdate();
 
-      if (i > 0) return true;
+      if (i > 0)
+        return true;
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
@@ -52,8 +52,7 @@ public class CustomerImpl implements CustomerDao {
   @Override
   public boolean updateCustomer(Customer c) {
     con = DBConnection.makeConnection();
-    sql =
-      "UPDATE `Customer_Maj` SET  `customerName`=?,`customerAddress`=?,`customerEmail`=?,`customerPhone`=?,`customerPassword`=? WHERE customerId = ?";
+    sql = "UPDATE `Customer_Maj` SET  `customerName`=?,`customerAddress`=?,`customerEmail`=?,`customerPhone`=?,`customerPassword`=? WHERE customerId = ?";
 
     try {
       pst = con.prepareStatement(sql);
@@ -65,7 +64,8 @@ public class CustomerImpl implements CustomerDao {
       pst.setString(5, c.getCustomerPassword());
       pst.setInt(6, c.getCustomerId());
 
-      if (pst.executeUpdate() > 0) return true;
+      if (pst.executeUpdate() > 0)
+        return true;
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -124,23 +124,20 @@ public class CustomerImpl implements CustomerDao {
   public List<Customer> searchCustomerByName(String customerName) {
     clist = new ArrayList<>();
     con = DBConnection.makeConnection();
-    sql =
-      "SELECT * FROM Customer_Maj WHERE customerName LIKE '%" +
-      customerName +
-      "%'";
+    sql = "SELECT * FROM Customer_Maj WHERE customerName LIKE '%" +
+        customerName +
+        "%'";
     try {
       pst = con.prepareStatement(sql);
       rs = pst.executeQuery();
       while (rs != null && rs.next()) {
-        customer =
-          new Customer(
+        customer = new Customer(
             rs.getInt(1),
             rs.getString(2),
             rs.getString(3),
             rs.getString(4),
             rs.getLong(5),
-            rs.getString(6)
-          );
+            rs.getString(6));
         clist.add(customer);
       }
       return clist;
@@ -194,15 +191,13 @@ public class CustomerImpl implements CustomerDao {
       pst = con.prepareStatement(sql);
       rs = pst.executeQuery();
       while (rs != null && rs.next()) {
-        customer =
-          new Customer(
+        customer = new Customer(
             rs.getInt(1),
             rs.getString(2),
             rs.getString(3),
             rs.getString(4),
             rs.getLong(5),
-            rs.getString(6)
-          );
+            rs.getString(6));
         clist.add(customer);
       }
       return clist;
@@ -228,7 +223,8 @@ public class CustomerImpl implements CustomerDao {
       pst = con.prepareStatement(sql);
       pst.setString(1, customerEmail);
       rs = pst.executeQuery();
-      while (rs.next()) return true;
+      while (rs.next())
+        return true;
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
@@ -251,7 +247,8 @@ public class CustomerImpl implements CustomerDao {
       pst = con.prepareStatement(sql);
       pst.setString(1, customerPassword);
       rs = pst.executeQuery();
-      while (rs.next()) return true;
+      while (rs.next())
+        return true;
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
@@ -273,7 +270,8 @@ public class CustomerImpl implements CustomerDao {
       pst = con.prepareStatement(sql);
       pst.setLong(1, customerPhone);
       rs = pst.executeQuery();
-      while (rs.next()) return true;
+      while (rs.next())
+        return true;
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
