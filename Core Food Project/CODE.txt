@@ -1,0 +1,26 @@
+Update Password 
+case 3:
+ sc.nextLine();
+                                        System.out.print("Enter old password : ");
+                                        String oldpass = sc.nextLine();
+                                        if (!cimpl.checkPassword(oldpass)) {
+                                            System.out.println("Old password Incorrect.");
+                                            break;
+                                        }
+                                        System.out.print("\nEnter New Password : ");
+                                        customerPassword = sc.nextLine();
+                                        while (cimpl.checkPassword(customerPassword)) {
+                                            System.out.println("Password already exist , please enter a new Password");
+                                            System.out.print("Enter New Password : ");
+                                            customerEmail = sc.nextLine();
+                                            flag = cimpl.checkPassword(customerPassword);
+                                            if (!flag)
+                                                break;
+
+                                        }
+                                        c.setCustomerPassword(customerPassword);
+                                        if (cimpl.updateCustomer(c))
+                                            System.out.println("Password Updated Successfully");
+                                        else
+                                            System.out.println("Error While Updating Password.");
+                                        break;
