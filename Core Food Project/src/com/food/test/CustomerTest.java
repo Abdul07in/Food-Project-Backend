@@ -34,6 +34,7 @@ public class CustomerTest {
                 System.out.println("3. Delete Customer");
                 System.out.println("4. Show All Customer");
                 System.out.println("5. Search By Name");
+                System.out.println("6. Search By Email");
                 System.out.println("9. Exit");
                 System.out.print("=>\t");
                 int choice = sc.nextInt();
@@ -272,8 +273,19 @@ public class CustomerTest {
                         break;
 
                     case 6:
-                        System.out.println("Search By Email");
+                        System.out.println("\nSearch By Email");
+                        sc.nextLine();
+                        System.out.print("Enter Customer Email : ");
                         customerEmail = sc.nextLine();
+                        c = cimpl.searchCustomerByEmail(customerEmail);
+                        if (c!= null)
+                        {
+                            System.out.println(c + "\n------------------------------------------------------------\n");
+                        }
+                        else
+                        {
+                            System.out.println("Customer Not Found");
+                        }
 
                         break;
                     case 9:
