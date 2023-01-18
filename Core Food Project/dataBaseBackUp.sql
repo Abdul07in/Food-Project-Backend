@@ -72,6 +72,14 @@ INSERT INTO `Food_Maj` (`foodId`, `foodName`, `foodType`, `foodPrice`, `foodQuan
 (4, 'Samosa Pav', 'Veg', 25.36, 20, 'Fast Food', 'a fried South Asian pastry with a savory filling, including ingredients such as spiced potatoes, onions, and peas.', 4),
 (5, 'Pani Puri', 'Veg', 35.00, 25, 'Fast Food', 'Gol gappa (also known as pani puri) is a popular bite-size chaat consisting of a hollow, crispy-fried puffed ball that is filled with potato, chickpeas, onions, spices, and flavoured water, usually tamarind or mint, and popped into one\'s mouth whole.', 5);
 
+
+CREATE TABLE `Admin_Maj` (
+ `adminId` int(11) NOT NULL AUTO_INCREMENT,
+ `adminEmail` varchar(255) DEFAULT NULL,
+ `adminPassword` varchar(255) DEFAULT NULL,
+ PRIMARY KEY (`adminId`)
+) 
+
 --
 -- Indexes for dumped tables
 --

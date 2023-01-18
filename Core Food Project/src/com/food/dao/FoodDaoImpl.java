@@ -112,20 +112,108 @@ public class FoodDaoImpl implements FoodDao {
 
     @Override
     public List<Food> searchFoodByCategory(String foodCategory) {
-        // TODO Auto-generated method stub
-        return null;
+        con = DBConnection.makeConnection();
+        sql = "select * from `Food_Maj` where foodCategory like ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, "%" + foodCategory + "%");
+            rs = pst.executeQuery();
+            flist = new ArrayList<>();
+            while (rs.next()) {
+                f = new Food();
+                f.setFoodId(rs.getInt("foodId"));
+                f.setFoodName(rs.getString("foodName"));
+                f.setFoodType(rs.getString("foodType"));
+                f.setFoodPrice(rs.getDouble("foodPrice"));
+                f.setFoodQuantity(rs.getInt("foodQuantity"));
+                f.setFoodCategory(rs.getString("foodCategory"));
+                f.setFoodDescription(rs.getString("foodDescription"));
+                f.setFoodRating(rs.getInt("foodRating"));
+                flist.add(f);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return flist;
+
     }
 
     @Override
     public List<Food> searchFoodByName(String foodName) {
-        // TODO Auto-generated method stub
-        return null;
+        con = DBConnection.makeConnection();
+        sql = "select * from `Food_Maj` where foodName like ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1,"%" +foodName+"%");
+            rs = pst.executeQuery();
+            flist = new ArrayList<>();
+            while (rs.next()) {
+                f = new Food();
+                f.setFoodId(rs.getInt("foodId"));
+                f.setFoodName(rs.getString("foodName"));
+                f.setFoodType(rs.getString("foodType"));
+                f.setFoodPrice(rs.getDouble("foodPrice"));
+                f.setFoodQuantity(rs.getInt("foodQuantity"));
+                f.setFoodCategory(rs.getString("foodCategory"));
+                f.setFoodDescription(rs.getString("foodDescription"));
+                f.setFoodRating(rs.getInt("foodRating"));
+                flist.add(f);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return flist;
     }
 
     @Override
     public List<Food> searchFoodByType(String foodType) {
-        // TODO Auto-generated method stub
-        return null;
+        con = DBConnection.makeConnection();
+        sql = "select * from `Food_Maj` where foodType = ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, foodType);
+            rs = pst.executeQuery();
+            flist = new ArrayList<>();
+            while (rs.next()) {
+                f = new Food();
+                f.setFoodId(rs.getInt("foodId"));
+                f.setFoodName(rs.getString("foodName"));
+                f.setFoodType(rs.getString("foodType"));
+                f.setFoodPrice(rs.getDouble("foodPrice"));
+                f.setFoodQuantity(rs.getInt("foodQuantity"));
+                f.setFoodCategory(rs.getString("foodCategory"));
+                f.setFoodDescription(rs.getString("foodDescription"));
+                f.setFoodRating(rs.getInt("foodRating"));
+                flist.add(f);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return flist;
     }
 
     @Override

@@ -6,4 +6,8 @@ public interface LoginDao {
 
     public boolean checkAdmin(String username, String password);
 
+    public boolean changeCustomerPassword(String username, String oldpassword, String newpassword);
+
+    public boolean changeAdminPassword(String username, String oldpassword, String newpassword);
+
 }

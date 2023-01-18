@@ -1,6 +1,7 @@
 package com.food.test;
 
 import com.food.dao.FoodDaoImpl;
+import com.food.dao.LoginDaoImpl;
 import com.food.pojo.Food;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public class FoodTest {
             Food f = null;
             FoodDaoImpl fimpl = new FoodDaoImpl();
             List<Food> flist = null;
+            LoginDaoImpl limpl = new LoginDaoImpl();
 
+            String login = null;
             Integer foodId;
             String foodName;
             String foodType;
@@ -29,18 +32,50 @@ public class FoodTest {
             String foodCategory;
             String foodDescription;
             Integer foodRating;
-            String[] type = {"Veg", "No-Veg"};
+            String[] type = { "Veg", "No-Veg" };
             int t;
+            boolean flag;
+
+            System.out.println("***************WELCOME********************");
+            System.out.print("Enter username : ");
+            String username = sc.nextLine();
+            System.out.print("Enter password : ");
+            String password = sc.nextLine();
+
+            if (limpl.checkAdmin(username, password)) {
+                System.out.println("You are logged in as admin");
+                login = "admin";
+            } else {
+                if (limpl.checkCustomer(username, password)) {
+                    System.out.println("You are logged in as user");
+                    login = "customer";
+                } else {
+                    System.out.println("You are not logged in , please check your credentials");
+                }
+            }
 
             while (true) {
 
                 System.out.println("\t\tMENU");
+                if (login.equals("admin")) {
+                    System.out.println("1. Add new food item.");
+                    System.out.println("2. Show food item.");
+                    System.out.println("3. Update Food By Id.");
+                    System.out.println("4. Delete Food by Id.");
+                    System.out.println("9. Exit");
+                } else if (login.equals("customer")) {
 
-                System.out.println("1. Add new food item.");
-                System.out.println("2. Show food item.");
-                System.out.println("3. Update Food By Id.");
-                System.out.println("4. Delete Food by Id.");
-                System.out.println("9. Exit");
+                    System.out.println("2. Show food item.");
+                    System.out.println("5. Search Food Item by Category.");
+                    System.out.println("6. Search Food Item By Name.");
+                    System.out.println("7. Search Food Item By Type.");
+                    System.out.println("9. Exit");
+
+                } else {
+                    System.out.println("Please login to continue");
+                    System.exit(0);
+                    ;
+                }
 
                 System.out.print("=>\t");
                 int option = sc.nextInt();
@@ -48,6 +83,8 @@ public class FoodTest {
 
                 switch (option) {
                     case 1:
+                        if (!login.equals("admin"))
+                            break;
                         System.out.println("ADD FOOD ITEMS");
                         System.out.print("\nEnter Name of the Item : ");
                         foodName = sc.nextLine();
@@ -102,7 +139,9 @@ public class FoodTest {
                         break;
 
                     case 3:
-                        System.out.println("SEARCH FOOD BY ID");
+                        if (!login.equals("admin"))
+                            break;
+                        System.out.println("UPDATE FOOD BY ID");
                         System.out.print("\nEnter Id of Food Item : ");
                         foodId = sc.nextInt();
 
@@ -128,6 +167,8 @@ public class FoodTest {
 
                         break;
                     case 4:
+                        if (!login.equals("admin"))
+                            break;
                         System.out.println("DELETE FOOD BY ID");
                         System.out.print("\nEnter Id of Food Item : ");
                         foodId = sc.nextInt();
@@ -157,6 +198,40 @@ public class FoodTest {
 
                         break;
 
+                    case 5:
+                        System.out.println("\nSearch Food By Category");
+
+                        System.out.println("Enter Category : ");
+                        foodCategory = sc.nextLine();
+                        flist = fimpl.searchFoodByCategory(foodCategory);
+                        if (flist != null && flist.isEmpty() == false)
+                            flist.forEach(
+                                    s -> System.out.println("\n------------------------------------------------" + s));
+                        else
+                            System.out.println("List is Empty");
+                        break;
+                    case 6:
+                        System.out.println("\nSearch Food By Name");
+                        System.out.println("Enter Name : ");
+                        foodName = sc.nextLine();
+                        flist = fimpl.searchFoodByName(foodName);
+                        if (flist != null && flist.isEmpty() == false)
+                            flist.forEach(
+                                    s -> System.out.println("\n------------------------------------------------" + s));
+                        else
+                            System.out.println("List is Empty");
+                        break;
+                    case 7:
+                        System.out.println("\nSearch Food By Type");
+                        System.out.println("Enter Type : ");
+                        foodType = sc.nextLine();
+                        flist = fimpl.searchFoodByType(foodType);
+                        if (flist != null && flist.isEmpty() == false)
+                            flist.forEach(
+                                    s -> System.out.println("\n------------------------------------------------" + s));
+                        else
+                            System.out.println("List is Empty");
+                        break;
                     case 9:
                         System.exit(0);
                     default:
