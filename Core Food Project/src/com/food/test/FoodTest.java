@@ -7,6 +7,8 @@ import com.food.pojo.Food;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.security.auth.login.CredentialException;
+
 public class FoodTest {
 
     static {
@@ -15,7 +17,7 @@ public class FoodTest {
         System.out.println("--------------------------------");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CredentialException {
 
         try (Scanner sc = new Scanner(System.in)) {
             Food f = null;
@@ -32,7 +34,7 @@ public class FoodTest {
             String foodCategory;
             String foodDescription;
             Integer foodRating;
-            String[] type = { "Veg", "No-Veg" };
+            String[] type = { "Veg", "Non Veg" };
             int t;
             boolean flag;
 
@@ -50,7 +52,7 @@ public class FoodTest {
                     System.out.println("You are logged in as user");
                     login = "customer";
                 } else {
-                    System.out.println("You are not logged in , please check your credentials");
+                    throw new CredentialException();
                 }
             }
 
@@ -90,7 +92,7 @@ public class FoodTest {
                         foodName = sc.nextLine();
 
                         System.out.print("Enter Type of the Item : ");
-                        System.out.println("\n\t1.Veg\t2.No-Veg");
+                        System.out.println("\n\t1.Veg\t2.Non-Veg");
                         System.out.print("=>");
                         t = sc.nextInt();
                         if (t == 1)
@@ -201,7 +203,7 @@ public class FoodTest {
                     case 5:
                         System.out.println("\nSearch Food By Category");
 
-                        System.out.println("Enter Category : ");
+                        System.out.print("Enter Category : ");
                         foodCategory = sc.nextLine();
                         flist = fimpl.searchFoodByCategory(foodCategory);
                         if (flist != null && flist.isEmpty() == false)
@@ -212,7 +214,7 @@ public class FoodTest {
                         break;
                     case 6:
                         System.out.println("\nSearch Food By Name");
-                        System.out.println("Enter Name : ");
+                        System.out.print("Enter Name : ");
                         foodName = sc.nextLine();
                         flist = fimpl.searchFoodByName(foodName);
                         if (flist != null && flist.isEmpty() == false)
@@ -223,7 +225,7 @@ public class FoodTest {
                         break;
                     case 7:
                         System.out.println("\nSearch Food By Type");
-                        System.out.println("Enter Type : ");
+                        System.out.print("Enter Type : ");
                         foodType = sc.nextLine();
                         flist = fimpl.searchFoodByType(foodType);
                         if (flist != null && flist.isEmpty() == false)
