@@ -3,11 +3,10 @@ package com.food.test;
 import com.food.dao.FoodDaoImpl;
 import com.food.dao.LoginDaoImpl;
 import com.food.pojo.Food;
+import com.food.utility.CrediantialsException;
 
 import java.util.List;
 import java.util.Scanner;
-
-import javax.security.auth.login.CredentialException;
 
 public class FoodTest {
 
@@ -17,7 +16,7 @@ public class FoodTest {
         System.out.println("--------------------------------");
     }
 
-    public static void main(String[] args) throws CredentialException {
+    public static void main(String[] args) {
 
         try (Scanner sc = new Scanner(System.in)) {
             Food f = null;
@@ -36,7 +35,6 @@ public class FoodTest {
             Integer foodRating;
             String[] type = { "Veg", "Non Veg" };
             int t;
-            boolean flag;
 
             System.out.println("***************WELCOME********************");
             System.out.print("Enter username : ");
@@ -52,7 +50,7 @@ public class FoodTest {
                     System.out.println("You are logged in as user");
                     login = "customer";
                 } else {
-                    throw new CredentialException();
+                    throw new CrediantialsException(username);
                 }
             }
 
