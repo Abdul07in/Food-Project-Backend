@@ -2,10 +2,11 @@ package com.food.pojo;
 
 public class Cart {
 
+    private Food f;
     private Integer cartId;
     private Integer foodId;
-    private Food f;
     private Integer foodQuantity;
+    private Double price;
     private Double subtotal;
     private String customerEmail;
 
@@ -13,13 +14,23 @@ public class Cart {
         super();
     }
 
-    public Cart(Integer cartId, Integer foodId, Food f, Integer foodQuantity, Double subtotal, String customerEmail) {
+    public Cart(Food f, Integer cartId, Integer foodId, Integer foodQuantity, Double price, Double subtotal,
+            String customerEmail) {
+        this.f = f;
         this.cartId = cartId;
         this.foodId = foodId;
-        this.f = f;
         this.foodQuantity = foodQuantity;
+        this.price = price;
         this.subtotal = subtotal;
         this.customerEmail = customerEmail;
+    }
+
+    public Food getF() {
+        return f;
+    }
+
+    public void setF(Food f) {
+        this.f = f;
     }
 
     public Integer getCartId() {
@@ -38,20 +49,20 @@ public class Cart {
         this.foodId = foodId;
     }
 
-    public Food getF() {
-        return f;
-    }
-
-    public void setF(Food f) {
-        this.f = f;
-    }
-
     public Integer getFoodQuantity() {
         return foodQuantity;
     }
 
     public void setFoodQuantity(Integer foodQuantity) {
         this.foodQuantity = foodQuantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Double getSubtotal() {
@@ -72,8 +83,8 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart [cartId=" + cartId + ", foodId=" + foodId + ", f=" + f + ", foodQuantity=" + foodQuantity
-                + ", subtotal=" + subtotal + ", customerEmail=" + customerEmail + "]";
+        return "Cart [f=" + f + ", cartId=" + cartId + ", foodId=" + foodId + ", foodQuantity=" + foodQuantity
+                + ", price=" + price + ", subtotal=" + subtotal + ", customerEmail=" + customerEmail + "]";
     }
 
 }
