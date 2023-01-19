@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 17, 2023 at 07:43 AM
+-- Generation Time: Jan 18, 2023 at 09:18 PM
 -- Server version: 5.7.40-0ubuntu0.18.04.1
 -- PHP Version: 7.2.34-36+ubuntu18.04.1+deb.sury.org+1
 
@@ -19,6 +19,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `testuser_MajeedProject41`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Admin_Maj`
+--
+
+CREATE TABLE `Admin_Maj` (
+  `adminId` int(11) NOT NULL,
+  `adminEmail` varchar(255) DEFAULT NULL,
+  `adminPassword` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Admin_Maj`
+--
+
+INSERT INTO `Admin_Maj` (`adminId`, `adminEmail`, `adminPassword`) VALUES
+(1, 'admin@gmail.com', 'admin123'),
+(2, 'squad@gmail.com', 'squ@d123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Cart_Maj`
+--
+
+CREATE TABLE `Cart_Maj` (
+  `cartId` int(11) NOT NULL,
+  `foodId` int(11) DEFAULT NULL,
+  `foodQuantity` int(11) DEFAULT NULL,
+  `price` double(15,2) DEFAULT NULL,
+  `subtotal` double(15,2) DEFAULT NULL,
+  `customerEmail` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,19 +105,26 @@ INSERT INTO `Food_Maj` (`foodId`, `foodName`, `foodType`, `foodPrice`, `foodQuan
 (1, 'Masala Dosa', 'Veg', 85.20, 10, 'Lunch', 'It is a thin pancake in South Indian cuisine made from a fermented batter of ground black lentils and rice.', 4),
 (2, 'Vada Pav', 'Veg', 25.20, 20, 'Fast Food', 'It consists of a spicy potato fritter (vada) served in a small, pav (a type of Indian bread roll). ', 5),
 (4, 'Samosa Pav', 'Veg', 25.36, 20, 'Fast Food', 'a fried South Asian pastry with a savory filling, including ingredients such as spiced potatoes, onions, and peas.', 4),
-(5, 'Pani Puri', 'Veg', 35.00, 25, 'Fast Food', 'Gol gappa (also known as pani puri) is a popular bite-size chaat consisting of a hollow, crispy-fried puffed ball that is filled with potato, chickpeas, onions, spices, and flavoured water, usually tamarind or mint, and popped into one\'s mouth whole.', 5);
-
-
-CREATE TABLE `Admin_Maj` (
- `adminId` int(11) NOT NULL AUTO_INCREMENT,
- `adminEmail` varchar(255) DEFAULT NULL,
- `adminPassword` varchar(255) DEFAULT NULL,
- PRIMARY KEY (`adminId`)
-) 
+(5, 'Pani Puri', 'Veg', 35.00, 25, 'Fast Food', 'Gol gappa (also known as pani puri) is a popular bite-size chaat consisting of a hollow, crispy-fried puffed ball that is filled with potato, chickpeas, onions, spices, and flavoured water, usually tamarind or mint, and popped into one\'s mouth whole.', 5),
+(6, 'Chicken Burger', 'Non Veg', 50.00, 10, 'Fast Food', 'A sandwich consisting of a patty made from ground chicken, served in a bun, typically hot and often with other ingredients. The chicken patty used in such a sandwich.', 4),
+(7, 'Butter Chicken', 'Non Veg', 350.00, 20, 'Main Course', 'the chicken is first marinated in yogurt, then browned in a pan before being drenched in a tomato gravy thick with spices like turmeric and garam masala, and of course, plenty of cream.', 5);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `Admin_Maj`
+--
+ALTER TABLE `Admin_Maj`
+  ADD PRIMARY KEY (`adminId`);
+
+--
+-- Indexes for table `Cart_Maj`
+--
+ALTER TABLE `Cart_Maj`
+  ADD PRIMARY KEY (`cartId`),
+  ADD KEY `foodId` (`foodId`);
 
 --
 -- Indexes for table `Customer_Maj`
@@ -102,6 +144,16 @@ ALTER TABLE `Food_Maj`
 --
 
 --
+-- AUTO_INCREMENT for table `Admin_Maj`
+--
+ALTER TABLE `Admin_Maj`
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `Cart_Maj`
+--
+ALTER TABLE `Cart_Maj`
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `Customer_Maj`
 --
 ALTER TABLE `Customer_Maj`
@@ -110,7 +162,17 @@ ALTER TABLE `Customer_Maj`
 -- AUTO_INCREMENT for table `Food_Maj`
 --
 ALTER TABLE `Food_Maj`
-  MODIFY `foodId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `foodId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Cart_Maj`
+--
+ALTER TABLE `Cart_Maj`
+  ADD CONSTRAINT `Cart_Maj_ibfk_1` FOREIGN KEY (`foodId`) REFERENCES `Food_Maj` (`foodId`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

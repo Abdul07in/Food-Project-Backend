@@ -10,7 +10,7 @@ public class CrediantialsException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return "Please check your credentials , " + username + " Not Found or Incorrect Password .";
+        return "🟠Please check your credentials , " + username + " Not Found or Incorrect Password .🟠";
     }
 
     @Override

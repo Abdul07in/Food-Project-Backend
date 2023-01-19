@@ -42,6 +42,7 @@ public class FoodTest {
             System.out.print("Enter password : ");
             String password = sc.nextLine();
 
+            
             if (limpl.checkAdmin(username, password)) {
                 System.out.println("You are logged in as admin");
                 login = "admin";
