@@ -80,7 +80,7 @@ public class CartImpl implements CartDao {
     public List<Cart> showAllCart() {
         cartList = new ArrayList<>();
         con = DBConnection.makeConnection();
-        sql = "SELECT * FROM `Cart_Maj`";
+        sql = "SELECT * FROM `Cart_Maj` ORDER BY `customerEmail` DESC";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
