@@ -2,7 +2,6 @@ package com.food.test;
 
 import java.io.Console;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -27,7 +26,6 @@ public class CartTest {
     public static void main(String[] args) {
 
         try (Scanner sc = new Scanner(System.in)) {
-            Food f = null;
             Cart c = null;
             Customer customer = null;
 
@@ -41,14 +39,12 @@ public class CartTest {
             Console console = System.console();
 
             String login = null;
-            Integer cartId;
             Integer foodId;
             Integer foodQuantity;
             Double price = 0.0;
             Double subtotal = 0.0;
             String customerEmail;
 
-            boolean flag = false;
             int choice;
 
             while (true) {

@@ -40,6 +40,14 @@ public class CartImpl implements CartDao {
 
         } catch (SQLException e) {
 
+        } finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
         return false;
     }
@@ -89,6 +97,13 @@ public class CartImpl implements CartDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return cartList;
     }
@@ -114,6 +129,13 @@ public class CartImpl implements CartDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
