@@ -101,8 +101,9 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart [f=" + f + ", cartId=" + cartId + ", foodId=" + foodId + ", foodQuantity=" + foodQuantity
-                + ", price=" + price + ", subtotal=" + subtotal + ", customerEmail=" + customerEmail + "]";
+        return "\nCart Id : " + cartId + "\nFood Id : " + foodId + "\nQuantity : " + foodQuantity
+                + "\nPrice : " + price + "\nSubtotal : " + subtotal + "\nCustomer Email : " + customerEmail +
+                "\n----------------------------------------------------------------\n";
     }
 
 }

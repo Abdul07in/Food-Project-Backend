@@ -1,5 +1,6 @@
 package com.food.test;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +38,7 @@ public class CartTest {
             List<Cart> clist = null;
             List<Food> flist = null;
             Map<Double, Double> map = new HashMap<Double, Double>();
+            Console console = System.console();
 
             String login = null;
             Integer cartId;
@@ -52,8 +54,8 @@ public class CartTest {
             while (true) {
                 System.out.print("\nEnter username : ");
                 String username = sc.nextLine();
-                System.out.print("Enter password : ");
-                String password = sc.nextLine();
+                char[] cpassword = console.readPassword("Enter your password: ");
+                String password = new String(cpassword);
 
                 if (limpl.checkAdmin(username, password)) {
                     System.out.println("You are logged in as admin");
@@ -75,11 +77,7 @@ public class CartTest {
 
                 clist = cImpl.showAllCart();
                 if (clist != null) {
-                    Iterator<Cart> iterator = clist.iterator();
-                    while (iterator.hasNext()) {
-                        c = iterator.next();
-                        System.out.println(c.getCustomerEmail());
-                    }
+                    clist.forEach(s -> System.out.println(s));
                 } else {
                     System.out.println("There is no cart");
                 }
@@ -92,6 +90,7 @@ public class CartTest {
                     System.out.println("2. Remove from cart");
                     System.out.println("3. Show cart");
                     System.out.println("9. Exit");
+                    System.out.print("=>");
                     choice = sc.nextInt();
                     sc.nextLine();
 
@@ -108,7 +107,7 @@ public class CartTest {
                                     System.out.println("--------------------------------");
                                 }
 
-                                System.out.print("Enter food id : ");
+                                System.out.print("\n\nEnter food id : ");
                                 foodId = sc.nextInt();
                                 sc.nextLine();
                                 System.out.print("Enter food quantity : ");
@@ -118,10 +117,8 @@ public class CartTest {
                                 for (Map.Entry<Double, Double> entry : map.entrySet()) {
                                     price = entry.getKey();
                                     subtotal = entry.getValue();
-                                    System.out.println(price);
                                 }
                                 customerEmail = customer.getCustomerEmail();
-
                                 c = new Cart();
                                 c.setCustomerEmail(customerEmail);
                                 c.setFoodId(foodId);

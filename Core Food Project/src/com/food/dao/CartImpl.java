@@ -21,8 +21,8 @@ public class CartImpl implements CartDao {
     String sql = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-
-    List<Cart> cartList = new ArrayList<>();
+    Cart cart = null;
+    List<Cart> cartList = null;
 
     @Override
     public boolean addCart(Cart cart) {
@@ -70,29 +70,27 @@ public class CartImpl implements CartDao {
 
     @Override
     public List<Cart> showAllCart() {
-
+        cartList = new ArrayList<>();
         con = DBConnection.makeConnection();
         sql = "SELECT * FROM `Cart_Maj`";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                Cart cart = new Cart();
-                cart.setCartId(rs.getInt("cartId"));
-                cart.setCustomerEmail(rs.getString("customerEmail"));
                 int foodId = rs.getInt("foodId");
                 Food f = new FoodDaoImpl().searchFoodById(foodId);
-                cart.setF(f);
-                cart.setFoodQuantity(rs.getInt("foodQuantity"));
-                cart.setPrice(rs.getDouble("price"));
-                cart.setSubtotal(rs.getDouble("subtotal"));
+                cart = new Cart(
+                        f,
+                        rs.getInt("cartId"),
+                        foodId,
+                        rs.getInt("foodQuantity"),
+                        rs.getDouble("price"), rs.getDouble("subtotal"), rs.getString("customerEmail"));
                 cartList.add(cart);
-                return cartList;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return cartList;
     }
 
     @Override
