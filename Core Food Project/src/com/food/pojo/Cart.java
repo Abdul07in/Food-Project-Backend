@@ -14,6 +14,24 @@ public class Cart {
         super();
     }
 
+    public Cart(Integer foodId, Integer foodQuantity, Double price, Double subtotal, String customerEmail) {
+        this.foodId = foodId;
+        this.foodQuantity = foodQuantity;
+        this.price = price;
+        this.subtotal = subtotal;
+        this.customerEmail = customerEmail;
+    }
+
+    public Cart(Integer cartId, Integer foodId, Integer foodQuantity, Double price, Double subtotal,
+            String customerEmail) {
+        this.cartId = cartId;
+        this.foodId = foodId;
+        this.foodQuantity = foodQuantity;
+        this.price = price;
+        this.subtotal = subtotal;
+        this.customerEmail = customerEmail;
+    }
+
     public Cart(Food f, Integer cartId, Integer foodId, Integer foodQuantity, Double price, Double subtotal,
             String customerEmail) {
         this.f = f;

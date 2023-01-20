@@ -18,4 +18,6 @@ public interface CartDao {
 
     public List<Cart> showAllCart();
 
+    public double getSubtotal(Double foodPrice, Integer foodQuantity);
+
 }
