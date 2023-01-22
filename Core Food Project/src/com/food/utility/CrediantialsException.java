@@ -15,8 +15,7 @@ public class CrediantialsException extends RuntimeException {
 
     @Override
     public String toString() {
-        System.out.println("Entered the crediantials didnt match");
-        return super.toString();
+        return "Entered the crediantials didnt match " + getMessage();
     }
 
 }

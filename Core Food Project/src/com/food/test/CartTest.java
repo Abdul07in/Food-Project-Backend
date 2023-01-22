@@ -1,11 +1,5 @@
 package com.food.test;
 
-import java.io.Console;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-
 import com.food.dao.CartImpl;
 import com.food.dao.CustomerImpl;
 import com.food.dao.FoodDaoImpl;
@@ -14,6 +8,10 @@ import com.food.pojo.Cart;
 import com.food.pojo.Customer;
 import com.food.pojo.Food;
 import com.food.utility.CrediantialsException;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class CartTest {
 
@@ -26,19 +24,18 @@ public class CartTest {
     public static void main(String[] args) {
 
         try (Scanner sc = new Scanner(System.in)) {
-            Cart c = null;
+            Cart c;
             Customer customer = null;
 
             LoginDaoImpl limpl = new LoginDaoImpl();
             FoodDaoImpl fimpl = new FoodDaoImpl();
             CustomerImpl cusimpl = new CustomerImpl();
             CartImpl cImpl = new CartImpl();
-            List<Cart> clist = null;
-            List<Food> flist = null;
-            Map<Double, Double> map = new HashMap<Double, Double>();
-            Console console = System.console();
+            List<Cart> clist;
+            List<Food> flist;
+            Map<Double, Double> map;
 
-            String login = null;
+            String login;
             Integer foodId;
             Integer foodQuantity;
             Double price = 0.0;
@@ -50,8 +47,8 @@ public class CartTest {
             while (true) {
                 System.out.print("\nEnter username : ");
                 String username = sc.nextLine();
-                char[] cpassword = console.readPassword("Enter your password: ");
-                String password = new String(cpassword);
+                System.out.print("Enter your password: ");
+                String password = sc.nextLine();
 
                 if (limpl.checkAdmin(username, password)) {
                     System.out.println("You are logged in as admin");
@@ -64,7 +61,11 @@ public class CartTest {
                         System.out.println("You are logged in as user");
                         break;
                     } else {
-                        throw new CrediantialsException(username);
+                        try {
+                            throw new CrediantialsException(username);
+                        } catch (CrediantialsException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -73,11 +74,19 @@ public class CartTest {
 
                 clist = cImpl.showAllCart();
                 if (clist != null) {
-                    clist.forEach(s -> System.out.println(s));
+                    clist.forEach(s -> {
+                        System.out.println("Food id : " + s.getFoodId());
+                        System.out.println("Food name : " + s.getF().getFoodName());
+                        System.out.println("Food price : " + s.getPrice());
+                        System.out.println("Food quantity : " + s.getFoodQuantity());
+                        System.out.println("Subtotal : " + s.getSubtotal());
+                        System.out.println("Customer Email : " + s.getCustomerEmail());
+                        System.out.println("--------------------------------\n");
+                    });
                 } else {
                     System.out.println("There is no cart");
                 }
-            } else if (login.equals("customer")) {
+            } else {
 
                 System.out.println("\n\nWelcome , " + customer.getCustomerName());
                 while (true) {
@@ -127,19 +136,44 @@ public class CartTest {
                                 System.out.println("Food List is empty");
                             }
                             break;
-
-                        case 3:
-                            System.out.println("SHOW MY CART");
+                        case 2:
+                            System.out.println("\nRemove from cart");
                             clist = cImpl.showMyCart(customer.getCustomerEmail());
                             if (clist != null) {
                                 clist.forEach(s -> {
+                                    System.out.println("Cart id : " + s.getCartId());
                                     System.out.println("Food id : " + s.getFoodId());
                                     System.out.println("Food name : " + s.getF().getFoodName());
                                     System.out.println("Food price : " + s.getPrice());
-                                    System.out.println("Subtoal : " + s.getSubtotal());
+                                    System.out.println("Food quantity : " + s.getFoodQuantity());
+                                    System.out.println("Subtotal : " + s.getSubtotal());
+                                    System.out.println("--------------------------------\n");
+                                });
+                                System.out.print("\n\nEnter Cart id : ");
+                                foodId = sc.nextInt();
+                                sc.nextLine();
+                                if(cImpl.deleteCart(foodId))
+                                    System.out.println("Cart deleted successfully");
+                                else
+                                    System.out.println("Cart not deleted");
+                            }
+                            break;
+
+                        case 3:
+                            System.out.println("\nSHOW MY CART");
+                            clist = cImpl.showMyCart(customer.getCustomerEmail());
+                            if (clist != null) {
+                                clist.forEach(s -> {
+                                    System.out.println("Cart id : " + s.getCartId());
+                                    System.out.println("Food id : " + s.getFoodId());
+                                    System.out.println("Food name : " + s.getF().getFoodName());
+                                    System.out.println("Food price : " + s.getPrice());
+                                    System.out.println("Food quantity : " + s.getFoodQuantity());
+                                    System.out.println("Subtotal : " + s.getSubtotal());
                                     System.out.println("--------------------------------\n");
                                 });
                             }
+                            break;
 
                         case 9:
                             System.exit(0);

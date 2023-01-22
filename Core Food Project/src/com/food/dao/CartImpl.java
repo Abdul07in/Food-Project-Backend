@@ -54,7 +54,23 @@ public class CartImpl implements CartDao {
 
     @Override
     public boolean deleteCart(Integer cartId) {
-        // TODO Auto-generated method stub
+        con = DBConnection.makeConnection();
+        sql = "DELETE FROM `Cart_Maj` WHERE `cartId` = ?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, cartId);
+            if (pst.executeUpdate() > 0)
+                return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 

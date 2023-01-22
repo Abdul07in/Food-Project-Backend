@@ -51,7 +51,12 @@ public class FoodTest {
                     System.out.println("You are logged in as user");
                     login = "customer";
                 } else {
+                    try {
                     throw new CrediantialsException(username);
+                    }catch (CrediantialsException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -205,7 +210,7 @@ public class FoodTest {
                         System.out.print("Enter Category : ");
                         foodCategory = sc.nextLine();
                         flist = fimpl.searchFoodByCategory(foodCategory);
-                        if (flist != null && flist.isEmpty() == false)
+                        if (flist != null && !flist.isEmpty())
                             flist.forEach(
                                     s -> System.out.println("\n------------------------------------------------" + s));
                         else
@@ -216,7 +221,7 @@ public class FoodTest {
                         System.out.print("Enter Name : ");
                         foodName = sc.nextLine();
                         flist = fimpl.searchFoodByName(foodName);
-                        if (flist != null && flist.isEmpty() == false)
+                        if (flist != null && !flist.isEmpty())
                             flist.forEach(
                                     s -> System.out.println("\n------------------------------------------------" + s));
                         else
@@ -227,7 +232,7 @@ public class FoodTest {
                         System.out.print("Enter Type : ");
                         foodType = sc.nextLine();
                         flist = fimpl.searchFoodByType(foodType);
-                        if (flist != null && flist.isEmpty() == false)
+                        if (flist != null && !flist.isEmpty())
                             flist.forEach(
                                     s -> System.out.println("\n------------------------------------------------" + s));
                         else
