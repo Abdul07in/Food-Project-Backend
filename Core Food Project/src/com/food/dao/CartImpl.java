@@ -72,8 +72,36 @@ public class CartImpl implements CartDao {
 
     @Override
     public List<Cart> showMyCart(String customerEmail) {
-        // TODO Auto-generated method stub
-        return null;
+        cartList = new ArrayList<Cart>();
+        con = DBConnection.makeConnection();
+        sql = "select * from Cart_Maj where customerEmail =?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, customerEmail);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                int foodId = rs.getInt("foodId");
+                Food f = new FoodDaoImpl().searchFoodById(foodId);
+                cart = new Cart(
+                        f,
+                        rs.getInt("cartId"),
+                        foodId,
+                        rs.getInt("foodQuantity"),
+                        rs.getDouble("price"), rs.getDouble("subtotal"), rs.getString("customerEmail"));
+                cartList.add(cart);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return cartList;
     }
 
     @Override

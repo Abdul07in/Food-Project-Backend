@@ -128,6 +128,19 @@ public class CartTest {
                             }
                             break;
 
+                        case 3:
+                            System.out.println("SHOW MY CART");
+                            clist = cImpl.showMyCart(customer.getCustomerEmail());
+                            if (clist != null) {
+                                clist.forEach(s -> {
+                                    System.out.println("Food id : " + s.getFoodId());
+                                    System.out.println("Food name : " + s.getF().getFoodName());
+                                    System.out.println("Food price : " + s.getPrice());
+                                    System.out.println("Subtoal : " + s.getSubtotal());
+                                    System.out.println("--------------------------------\n");
+                                });
+                            }
+
                         case 9:
                             System.exit(0);
                         default:
