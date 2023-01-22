@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Core Food Project/lib/mysql-connector-j-8.0.31.jar"
+    ],
+    "editor.fontFamily": "'FiraCode NF', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "'FiraCode NF', monospace"
+}
