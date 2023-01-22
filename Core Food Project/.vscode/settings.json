@@ -20,6 +20,10 @@
   ],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "'Fira Code',Consolas",
-  "editor.codeLensFontFamily": ""
+  "editor.fontFamily": "'FiraCode NF', Fira Code",
+  "terminal.integrated.fontFamily": "FiraCode NF",
+  "editor.codeLensFontFamily": "",
+  "editor.codeActionsOnSave": {
+  
+  }
 }
