@@ -89,6 +89,14 @@ public class FoodDaoImpl implements FoodDao {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
         return false;
     }
@@ -106,6 +114,14 @@ public class FoodDaoImpl implements FoodDao {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
         return false;
     }
@@ -249,7 +265,7 @@ public class FoodDaoImpl implements FoodDao {
 
         try {
             con = DBConnection.makeConnection();
-            sql = "SELECT * FROM `Food_Maj`";
+            sql = "SELECT * FROM `Food_Maj` ORDER BY foodName";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 

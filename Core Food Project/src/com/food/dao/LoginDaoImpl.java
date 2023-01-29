@@ -27,6 +27,14 @@ public class LoginDaoImpl implements LoginDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
         return false;
     }
@@ -46,6 +54,14 @@ public class LoginDaoImpl implements LoginDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                pst.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
         return false;
     }

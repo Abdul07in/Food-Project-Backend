@@ -67,6 +67,14 @@ public class CustomerImpl implements CustomerDao {
         return true;
     } catch (SQLException e) {
       e.printStackTrace();
+    }finally {
+        try {
+            pst.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     return false;
@@ -84,6 +92,14 @@ public class CustomerImpl implements CustomerDao {
       }
     } catch (SQLException e) {
       e.printStackTrace();
+    }finally {
+        try {
+            pst.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
     return false;
   }

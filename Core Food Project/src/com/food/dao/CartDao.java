@@ -17,6 +17,8 @@ public interface CartDao {
     public List<Cart> showMyCart(String customerEmail);
 
     public List<Cart> showAllCart();
+    
+    public Cart getCartById(Integer cartId);
 
     public double getSubtotal(Double foodPrice, Integer foodQuantity);
 
