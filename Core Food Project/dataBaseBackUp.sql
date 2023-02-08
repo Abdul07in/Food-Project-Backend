@@ -3,12 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 18, 2023 at 09:18 PM
+-- Generation Time: Jan 23, 2023 at 09:10 PM
 -- Server version: 5.7.40-0ubuntu0.18.04.1
 -- PHP Version: 7.2.34-36+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET time_zone = "+05:30";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -55,6 +55,14 @@ CREATE TABLE `Cart_Maj` (
   `customerEmail` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Cart_Maj`
+--
+
+INSERT INTO `Cart_Maj` (`cartId`, `foodId`, `foodQuantity`, `price`, `subtotal`, `customerEmail`) VALUES
+(1, 2, 4, 25.20, 100.80, 'dheeraj@gmail.com'),
+(2, 1, 5, 85.20, 426.00, 'abdulkanoor@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -76,7 +84,7 @@ CREATE TABLE `Customer_Maj` (
 
 INSERT INTO `Customer_Maj` (`customerId`, `customerName`, `customerAddress`, `customerEmail`, `customerPhone`, `customerPassword`) VALUES
 (1, 'Abdul Majeed Kanoor', 'B/101 Rajmahal , Pooja Nagar , Mira Road East.', 'abdulkanoor@gmail.com', 7021011652, 'abdul123'),
-(2, 'Aniket Gupta', 'Kandivali East , Mumbai', 'aniket@gmail.com', 985654423, 'abdul@123'),
+(2, 'Aniket Gupta', 'Kandivali East , Mumbai', 'aniket@gmail.com', 985654423, 'aniket123'),
 (3, 'Dheeraj Kumar', 'Andheri East , Mumbai', 'dheeraj@gmail.com', 8744555215, 'dheeraj123'),
 (5, 'Vijay Sharma', 'Jogeshwari East', 'vijay@gmail.com', 9877544562, 'asdfg1234');
 
@@ -109,6 +117,22 @@ INSERT INTO `Food_Maj` (`foodId`, `foodName`, `foodType`, `foodPrice`, `foodQuan
 (6, 'Chicken Burger', 'Non Veg', 50.00, 10, 'Fast Food', 'A sandwich consisting of a patty made from ground chicken, served in a bun, typically hot and often with other ingredients. The chicken patty used in such a sandwich.', 4),
 (7, 'Butter Chicken', 'Non Veg', 350.00, 20, 'Main Course', 'the chicken is first marinated in yogurt, then browned in a pan before being drenched in a tomato gravy thick with spices like turmeric and garam masala, and of course, plenty of cream.', 5);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Order_Maj`
+--
+
+CREATE TABLE `Order_Maj` (
+  `orderId` int(11) NOT NULL,
+  `billingAmount` double(15,2) DEFAULT NULL,
+  `orderDate` date DEFAULT NULL,
+  `customerEmail` varchar(255) DEFAULT NULL,
+  `dropLocation` varchar(255) DEFAULT NULL,
+  `deliveryDate` date DEFAULT NULL,
+  `orderStatus` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -140,6 +164,12 @@ ALTER TABLE `Food_Maj`
   ADD PRIMARY KEY (`foodId`);
 
 --
+-- Indexes for table `Order_Maj`
+--
+ALTER TABLE `Order_Maj`
+  ADD PRIMARY KEY (`orderId`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -152,7 +182,7 @@ ALTER TABLE `Admin_Maj`
 -- AUTO_INCREMENT for table `Cart_Maj`
 --
 ALTER TABLE `Cart_Maj`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Customer_Maj`
 --
@@ -163,6 +193,11 @@ ALTER TABLE `Customer_Maj`
 --
 ALTER TABLE `Food_Maj`
   MODIFY `foodId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `Order_Maj`
+--
+ALTER TABLE `Order_Maj`
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --

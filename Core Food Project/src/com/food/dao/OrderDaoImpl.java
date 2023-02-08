@@ -48,6 +48,14 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		return null;
@@ -55,26 +63,112 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public String checkStatus(Integer orderId) {
-		// TODO Auto-generated method stub
+
+		con = DBConnection.makeConnection();
+		sql = "SELECT `orderStatus` FROM `Order_Maj` WHERE `orderId` = ?";
+
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, orderId);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
 		return null;
 	}
 
 	@Override
 	public boolean cancelOrder(Integer orderId) {
-		// TODO Auto-generated method stub
+		con = DBConnection.makeConnection();
+		sql = "UPDATE `Order_Maj` SET `orderStatus` = 'CANCELLED'  WHERE `orderId` = ?";
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, orderId);
+			if (pst.executeUpdate() > 0)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean changeStatus(Integer orderId, String orderStatus) {
-		// TODO Auto-generated method stub
+		con = DBConnection.makeConnection();
+		sql = "UPDATE `Order_Maj` SET `orderStatus`= ? WHERE `orderId` = ?";
+
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, orderStatus);
+			pst.setInt(2, orderId);
+			if (pst.executeUpdate() > 0)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 		return false;
 	}
 
 	@Override
 	public List<Order> showOrderHistory(String customerEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		oList = new ArrayList<>();
+		con = DBConnection.makeConnection();
+		sql = "SELECT * FROM `Order_Maj` WHERE `customerEmail` = ?";
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, customerEmail);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				order = new Order();
+				order.setOrderId(rs.getInt(1));
+				order.setBillingAmount(rs.getDouble(2));
+				order.setOrderDate(rs.getDate(3).toLocalDate());
+				order.setCustomerEmail(rs.getString(4));
+				order.setDropLocation(rs.getString(5));
+				order.setDeliveryDate(rs.getTimestamp(6).toLocalDateTime());
+				order.setOrderStatus(rs.getString(7));
+				oList.add(order);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		return oList;
 	}
 
 	@Override
@@ -99,6 +193,14 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		return oList;
@@ -129,6 +231,14 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		return null;
