@@ -129,7 +129,6 @@ public class OrderTest {
 
 				} else if (login.equals("customer")) {
 					do {
-						exit = false;
 						System.out.println("1. Place Order");
 						System.out.println("2. Cancel Order");
 						System.out.println("3. Show Order");
