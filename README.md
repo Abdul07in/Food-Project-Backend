@@ -26,8 +26,7 @@ A console-based food ordering application built using Core Java and MySQL.
 
 
 ##  Note
-     - The application use the mysql connector version mysql-connector-j-8.0.31.jar , if you are using the different 
-       version please change the connector version in the classpath of your project accordingly.
+- The application use the mysql connector version mysql-connector-j-8.0.31.jar , if you are using the different version please change the connector version in the classpath of your project accordingly.
        
 
 ##  Conclusion
